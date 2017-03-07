@@ -1,0 +1,117 @@
+%Especificacion
+\documentclass[12pt]{article}
+
+%Paquetes
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=3cm,letterpaper]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish,activeacute]{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumerate}
+%\usepackage{tabularx}
+%\usepackage{wasysym}
+\usepackage{graphicx}
+%\graphicspath { {tarea01/media/} }
+%\usepackage{pifont}
+
+%Preambulo
+\title{Complejidad Computacional \\ Tarea 1}
+\author{Karla Adriana Esquivel Ramírez \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
+\date{Entrega: 06/03/17 \\ Facultad de Ciencias UNAM}
+
+\begin{document}
+\maketitle
+\section*{Ejercicios}
+\subsubsection*{1.}
+
+\subsubsection*{2.}
+
+ Demuestra que los siguientes problemas sobre gráficas (es decir, los lenguajes respectivos) están en P (elige la representación que prefieras para las gráficas):
+ 
+ \begin{itemize}
+  \item CONNECTED: el conjunto de todas las gráficas conexas.
+  
+    Por el ejemplo de la pagina 25 del libro Arora sabemos que decidir si dos vértices son conexos toma tiempo polinomial. Por lo que podemos esbosar un algoritmo para decidir la coneccidad de una grafica de la siguiente manera:
+
+    Checamos para cada par de vértices conectados por una arista dentro de G si son conexos. Si esto se cumple entonces la gráfica es Conexa y está en P. Esta en P por que a lo mas checamos n*n pares de vertices y cada ves que checamos
+      nos toma tiempo polinomial (por lo mencionado anteriormente), entonces el tiempo que tarda nuestro algoritmo es polinomial.
+    
+  
+  \item BIPARTITE: el conjunto de todas las gráficas bipartitas, es decir, aquellas cuyos vértices puedan ser divididos en dos conjuntos A y B tales que todas las aristas en la gráfica tengan en un extremo un vértice de A y en el otro uno de B. 
+  
+  Sea G una gráfica.
+  
+  Tomamos todos los vértices que no tengan adyacencias entre sí y los colocamos en un mismo conjunto al que denotaremos A. Este paso toma a lo mas $(n^2)$.
+  
+  Checamos los vértices sobrantes y comprobamos que no haya adyacencias entre ellos si hay alguna adyacencia entre ellos entonces no hacemos nada pues G no es bipartita, si no hay adayacencias entonces los colocamos en un segundo conjunto que denotaremos como B, si por alguna razón no sobraron vértices entonces simplemente no hacemos nada porque entonces G no es bipartita.
+Este paso toma a lo mas $(n^2)$ pues revisas por segunda vez los nodos para checar las adyacencias.
+
+  Una vez que tengamos nuestros conjuntos A y B checamos que en cada uno de los vértices exista al menos una adyacencia que vaya de cada uno de los vértices del conjunto A a los vértices del conjunto B y viceversa.
+	Este paso toma a lo mas $(n^2)$ pues se tienen que revisar las adyacencias    	entre cada uno de los vértices dentro de nuestros conjuntos A y B. 
+	
+  Este algoritmo nos tomaria a lo mas $3(n^2)$ y esto es tiempo polinomial.
+  
+ \end{itemize}
+
+\subsubsection*{3.}
+\textbf{Demostración:\\}
+\\
+Primero supongamos que $L_{S}^{2} \in P$.
+Esto quiere decir que la representación binaria en base 2 toma un tiempo polinomial. Además,  sabemos que convertir de base 2 a otra con codificación binaria nos lleva un tiempo $O(n^2)$ con algoritmos como "Double Dabble" que sigue siendo polinomial.\\
+Por otro lado, suponiendo que $L_{S}^{b} \in P$, para convertir de la representación binaria de una base a la base 2 se puede pasar el número a su lenguaje original ($\{0, \dots, b-1\}$) en tiempo $O(n)$ y después convertir a la representación en $L_{S}^{2}$ en $O(\log n)$ que es polinomial.\\
+Por lo tanto, la base no tiene ningún efecto sobre la pertenencia en P. 
+\subsubsection*{4.}
+
+Demuestra que los siguientes lenguajes están en NP:
+
+ \begin{itemize}
+  \item 2COL = \{<G> | <G> codifica una gráfica que tiene una 2-coloración\}.
+  
+  Probar que 2COL $\in$ NP.
+
+  Entrada para $TM = <A,w,c>$.
+  
+Donde $A = G$ y $G$ es una gráfica.
+
+$c$ es Una Lista de nodos coloreados.
+
+$w$ se desccribe de la siguiente manera.
+
+\begin{enumerate}
+ \item Se checa que todos los nodos de G se encuentran en la Lista.
+ \item Se checa que todos los nodos de la Lista se encuentren en G.
+ \item Checar que para cualesquiera dos nodos conectados por una arista (adyacentes) serán de colores distintos, respectivamente C1 y C2.
+ \item Acepta si 1,2 y 3 se cumplen.
+\end{enumerate}
+
+  \item 3COL = \{<G> | <G> codifica una gráfica que tiene una 3-coloración\}.
+  
+  Probar que 3COL $\in$ NP.
+
+  Entrada para $TM = <A,w,c>$.
+  
+Donde $A = G$ y $G$ es una gráfica.
+
+$c$ es Una Lista de nodos coloreados.
+
+$w$ se desccribe de la siguiente manera.
+
+\begin{enumerate}
+ \item Se checa que todos los nodos de G se encuentran en la Lista.
+ \item Se checa que todos los nodos de la Lista se encuentren en G.
+ \item Checar que para cualesquiera dos nodos conectados por una arista (adyacentes) serán de colores distintos, respectivamente C1 y C2.
+ \item Acepta si 1,2 y 3 se cumplen.
+\end{enumerate}
+
+  \item  ¿Cuáles están en P?.
+  
+  2COL $\in$ P porque una grafica es 2-coloreable si es una gráfica bipartita y por el ejercico 2 sabemos que esto esta en P.
+  
+  3COL $\in$ NP-Duro según la literatura.
+
+
+ \end{itemize}
+
+\end{document}
