@@ -32,15 +32,32 @@
 Primero vemos si $L_1$ $\cup$ $L_2$ $\in$ NP: \\
 Sea $V_1(x,c)$ un algoritmo verificador para $L_1$ que para una cadena $x$ y un posible certificado $c$, entonces si $V_1(x,c) = 1$ significa que $c$ verifica que $x \in L_1$ y si $V_1(x,c) = 0$ sucede lo contrario. Análogamente $V_2(x,c)$ es un verificador para $L_2$. Ya que $L_1$, $L_2$ $\in$ NP, sabemos que sus respectivos verificadores deben de correr en tiempo polinomial $O(|x|^k)$ para alguna constante k. \\
 Sea $L_3 = L_1 \cup L_2$, si podemos construir un verificador $V_3$ para $L_3$ que corra en tiempo polinomial, podremos decir entonces que $L_3 \in NP$. \\
-Ya que en $L_3$ estamos uniendo $L_1$ y $L_2$, tenemos que para un certificado $c$ para $L_3$ sucede que $V_1(x,c) = 1$ o $V_2(x,c) = 1$, por lo tanto podemos definir a $V_3$ de la siguiente manera: $V_3(x,c) = V_1(x,c) \or V_2(x,c)$. Para verificar que $V_3$ corre en tiempo polinomial podemos decir que si $V_1$ corre en tiempo $O(|x|^{k_1})$ y $v_2$ en tiempo $O(|x|^{k_1})$, entonces como $V_3$ consiste en correr a $V_1$ y $V_2$, el tiempo en que lo realizara será $O(|x|^{k_1})$ + $O(|x|^{k_2})$ = $O(|x|^{max\{k_1,k_2\}})$, que es tiempo polinomial, y por lo tanto $L_3 \in NP$
+Ya que en $L_3$ estamos uniendo $L_1$ y $L_2$, tenemos que para un certificado $c$ para $L_3$ sucede que $V_1(x,c) = 1$ o $V_2(x,c) = 1$, por lo tanto podemos definir a $V_3$ de la siguiente manera: $V_3(x,c) = V_1(x,c) \lor V_2(x,c)$. Para verificar que $V_3$ corre en tiempo polinomial podemos decir que si $V_1$ corre en tiempo $O(|x|^{k_1})$ y $V_2$ en tiempo $O(|x|^{k_2})$, entonces como $V_3$ consiste en correr a $V_1$ y $V_2$, el tiempo en que lo realizará será $O(|x|^{k_1})$ + $O(|x|^{k_2})$ = $O(|x|^{max\{k_1,k_2\}})$, que es tiempo polinomial, y por lo tanto $L_3 \in NP$. \\
 
-\subsubsection*{2.}
+Ahora vemos si $L_1$ $\cap$ $L_2$ $\in$ NP: \\
+Similarmente al caso anterior, tenemos $V_1$ y $V_2$ verificadores de $L_1$ y $L_2$ y queremos construir $V_3$ verificador de $L_3 = L_1 \cap L_2$. Para esto notamos que para que $c$ sea un certificado de $L_3$ tiene que suceder que $V_1(x,c) = 1$ y $V_2(x,c) = 1$, entonces definimos a $V_3$ como: $V_3(x,c) = V_1(x,c) \land V_2(x,c)$, y análogamente al caso anterior, ya que se corre ambos verificadores, tenemos que $V_3$ corre en tiempo polinomial $O(|x|^{k_1})$ + $O(|x|^{k_2})$ = $O(|x|^{max\{k_1,k_2\}})$, y por lo tanto $L_3 \in NP$.
 
-\subsubsection*{3.}
-\textbf{Demuestra que el lenguaje} \\
-\indent \textit{SPACETM} = $\{ \langle$M$\rangle \langle \alpha 
-\rangle 1^n$ | M es una MT que acepta $\alpha$ en espacio \textit{n} $\}$ \\
-\textbf{es PSPACE-completo.} \\
+\subsubsection*{2. Demuestra que si P = NP, entonces NP = coNP.}
+Partamos de la afirmación de que \textbf{P} es cerrado bajo complemento.\\
+\noindent\\
+\underline{\textbf{Dem.}} (\textbf{NP} $\subseteq$ \textbf{coNP}) \\
+Sea $L \in $ \textbf{NP}. Dado que \textbf{P} $=$ \textbf{NP},\\
+$\Rightarrow$ $L \in $ \textbf{P},\\
+$\Rightarrow$ $\widetilde{L} \in $ \textbf{P}, \\
+$\Rightarrow$ $\widetilde{L} \in $ \textbf{NP} (por hipótesis). \\Por la definición de \textbf{coNP}, $L \in $ \textbf{coNP}.\\
+\noindent \\
+\underline{\textbf{Dem.}} (\textbf{coNP} $\subseteq$ \textbf{NP}) \\
+Sea $L \in $ \textbf{coNP},\\
+$\Rightarrow$ $\widetilde{L} \in $ \textbf{NP},\\
+$\Rightarrow$ $\widetilde{L} \in $ \textbf{P} (por hipótesis),\\
+$\Rightarrow$ $L \in $ \textbf{P}, pues \textbf{P} es cerrado bajo complemento.\\
+Por el supuesto de que \textbf{P} = \textbf{NP}, ${L} \in $ \textbf{NP}. \\
+
+Ahora que hemos probado ambas contenciones, ello demuestra la igualdad de los conjuntos bajo la condición de que \textbf{P} = \textbf{NP}.
+Es decir, si \textbf{P} = \textbf{NP}, entonces \textbf{NP} = \textbf{coNP}.
+
+
+\subsubsection*{3. Demuestra que el lenguaje $SPACETM$ = $\{ \langle$M$\rangle \langle \alpha \rangle 1^n$ | M es una MT que acepta $\alpha$ en espacio \textit{n} $\}$ es PSPACE-completo.}
 
  P.D.\\
 
@@ -70,8 +87,7 @@ $\therefore$ $ Es PSPACE-Completo.$\\
 
 $\dots$
 
-\subsubsection*{4.}
-\textbf{Demuestra $2SAT \in NL$ } \\
+\subsubsection*{4. Demuestra $2SAT \in NL$}
 
 
 Primero veamos que para todo F en 2-SAT podemos construir una grafica dirigida G de la siguiente manera:
@@ -126,7 +142,28 @@ Para ver si algo cumple con 2-SAT’ basta con ver si hay una camino de alguna l
 
 \subsubsection*{5.}
 
-\subsubsection*{6.}
+\subsubsection*{6. Demuestra que en todo juego finito de información perfecta con dos jugadores, uno de
+los dos tiene una estrategia ganadora.}
+
+Supongamos que $n$ es la cota superior de movimientos después de los cuales se tiene un ganador en el juego. Para que uno de los jugadores, digamos el jugador 1,
+tenga una estrategia ganadora en un juego de información perfecta -es decir, que los jugadores conocen todos los movimientos desde que comenzó el juego-, es necesario que para toda primera jugada del jugador 2, exista una serie de jugadas siguientes por parte del jugador 1 que al termino del juego le permitan ganar a dicho jugador.
+
+Lo anterior lo podemos modelar considerando una Fórmula Booleana Cuantificada (QBF). Primero, consideremos que cada movimiento puede ser codificado como una cadena binaria, decidir qué jugador gana al término del juego podemos expresarlo como una fórmula Booleana $\varphi$. S.p.g $\varphi$ = 1, indica que 2 ha ganado el juego. Dicho esto, el jugador 2 tendrá una estrategia ganadora si y sólo si, la siguiente QBF es verdadera (aquí empieza el jugador 1):
+\begin{equation}
+  QBF_1 := \forall{x_1}\exists{x_2}\forall{x_3}\exists{x_4}\dots\exists{x_{2_n}} \varphi(x_1,x_2,...,x_n) 
+\end{equation}
+Supongamos que $QBF_1$ es falsa, con lo que su negación debe ser verdadera, por la definición de una QBF (al no tener variables libres),
+con lo que tendríamos:
+\begin{equation}
+  QBF_2 := \neg(\forall{x_1}\exists{x_2}\forall{x_3}\exists{x_4}\dots\exists{x_{2_n}} \varphi(x_1,x_2,...,x_n))
+\end{equation}
+Es decir:
+\begin{equation}
+  QBF_2 := \exists{x_1}\forall{x_2}\exists{x_3}\forall{x_4}\dots\forall{x_{2_n}} \neg\varphi(x_1,x_2,...,x_n))
+\end{equation}
+Teníamos previamente que el jugador 2 ganaba, por lo que $\neg\varphi = 0$, así que el ganador en esta $QBF_2$ es 1 y se muestra que existe una
+estrategía en la que este jugador gana el juego.
+Por lo tanto, hemos demostrado que alguno de los dos jugadores tiene una estrategia ganadora en el juego finito de información perfecta.
 
 \newpage
 \section*{Anexo}
