@@ -25,7 +25,52 @@
 \maketitle
 \section*{Ejercicios}
 \subsubsection*{1.}
+Comencemos con la codificación de la máquina de Turing como una cadena binaria.
 
+Sea $M = (Q,\Sigma,\Gamma,\delta,s,r,t,\vdash,\sqcup)$ una máquina de Turing, con
+\begin{itemize}
+\item $Q = i$
+\item $\Sigma = j$
+\item $\Gamma = k$
+\item $s$ el m-ésimo estado
+\item $t$ el n-ésimo estado
+\item $r$ el p-ésimo estado
+\item $\vdash$ el q-ésimo caracter de $\Sigma$
+\item $\vdash$ el r-ésimo caracter de $\Sigma$ 
+\end{itemize}
+Dicha especificación será codificada por la siguiente cadena binaria:\\
+\begin{equation}
+  0^i10^j10^k10^m10^n10^p10^q10^r1.
+\end{equation}
+
+Continuamos con la codificación de una transición en delta de la forma $\delta(s_u,a_v) = (s_w,a_x,\rightarrow)$ como (2),
+mientras que una transición de la forma $\delta(s_u,a_v) = (s_w,a_x,\leftarrow)$ como (3):\\
+\begin{equation}
+  0^u10^v10^w10^x101
+\end{equation}
+\begin{equation}
+  0^u10^v10^w10^x111  
+\end{equation}
+De esta manera, podemos codificar completamente la tabla original de M.\\
+Finalmente, una cadena de entrada en $\Gamma^*$ de la forma $a_{n_1} \dots a_{n_z}$, quedará codificada por la cadena binaria:\\
+\begin{equation}
+0^{n_1}10^{n_2}1\dots0^{n_z}
+\end{equation}
+
+Recordemos que la Máquina Universal de Turing $U$ que simulará a $M$, consta de tres cintas, además de la de entrada y salida. La primera de ellas
+será utilizada para la descripción de $M$, es decir, la tabla que quedó codificada para cada transición $\delta$ como en (3); la segunda, contendrá lo que corresponde con la cinta original de $M$; y la tercera el estado en el que la $M$ se encontraría.
+
+Al iniciar $U$, en la primera cinta ya debe tener la tabla de $M$ codificada, mientras que en la tercera cinta aparecerá un 0, indicando que se encuentra en el estado inicial de la máquina original.
+
+Separados por unos, podemos considerar una cadena binaria proveniente de una codificación de transición en $\delta$, como una quinteta, por los 5 elementos en total que componen una transición. Para emular a $M$, la Máquina Universal de Turing $U$, deberá hacer lo siguiente por cada
+transición de la TM original:\\
+\begin{enumerate}
+\item Localiza en la primera cinta aquella quinteta en la que el primer componente sea igual al que se encuentra en la tercera cinta y el segundo
+  componente sea igual al que se encuentra en la segunda cinta.
+\item Copia a la tercera cinta el tercer componente de la primera cinta (el estado al que se transfiere).
+\item Sustituye la segunda cinta con lo que tiene el cuarto componente.
+\item Interpetra el movimiento de la cabeza que se encuentra en el quinto componente, moviendo acorde la cabeza de la segunda cinta. 
+\end{enumerate}
 \subsubsection*{2.}
 
  Demuestra que los siguientes problemas sobre gráficas (es decir, los lenguajes respectivos) están en P (elige la representación que prefieras para las gráficas):
