@@ -21,11 +21,18 @@
 \author{Karla Adriana Esquivel Ramírez \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
 \date{Entrega: 14/03/17 \\ Facultad de Ciencias UNAM}
 
+\setlength\parindent{0pt}
+
 \begin{document}
 \maketitle
 \section*{Ejercicios}
 
-\subsubsection*{1.}
+\subsubsection*{1. Supón que $L_1$, $L_2$ $\in$ $\textbf{NP}$. ¿Qué pasa con $L_1$ $\cup$ $L_2$ y  $L_1$ $\cap$ $L_2$?}
+
+Primero vemos si $L_1$ $\cup$ $L_2$ $\in$ NP: \\
+Sea $V_1(x,c)$ un algoritmo verificador para $L_1$ que para una cadena $x$ y un posible certificado $c$, entonces si $V_1(x,c) = 1$ significa que $c$ verifica que $x \in L_1$ y si $V_1(x,c) = 0$ sucede lo contrario. Análogamente $V_2(x,c)$ es un verificador para $L_2$. Ya que $L_1$, $L_2$ $\in$ NP, sabemos que sus respectivos verificadores deben de correr en tiempo polinomial $O(|x|^k)$ para alguna constante k. \\
+Sea $L_3 = L_1 \cup L_2$, si podemos construir un verificador $V_3$ para $L_3$ que corra en tiempo polinomial, podremos decir entonces que $L_3 \in NP$. \\
+Ya que en $L_3$ estamos uniendo $L_1$ y $L_2$, tenemos que para un certificado $c$ para $L_3$ sucede que $V_1(x,c) = 1$ o $V_2(x,c) = 1$, por lo tanto podemos definir a $V_3$ de la siguiente manera: $V_3(x,c) = V_1(x,c) \or V_2(x,c)$. Para verificar que $V_3$ corre en tiempo polinomial podemos decir que si $V_1$ corre en tiempo $O(|x|^{k_1})$ y $v_2$ en tiempo $O(|x|^{k_1})$, entonces como $V_3$ consiste en correr a $V_1$ y $V_2$, el tiempo en que lo realizara será $O(|x|^{k_1})$ + $O(|x|^{k_2})$ = $O(|x|^{max\{k_1,k_2\}})$, que es tiempo polinomial, y por lo tanto $L_3 \in NP$
 
 \subsubsection*{2.}
 
@@ -42,7 +49,7 @@ I) $SPACETM \in PSPACE.$\\
 
 II) Cualquier $L \in PSPACE$ se puede reducir a SPACETM\\
  
-Entrada < M, \alpha, $1^{n}$ >\\
+Entrada < M, $\alpha$, $1^{n}$ >\\
 
 Construimos $M’\in TM$ para Simular M, M’ con dos contadores. \\
 
@@ -50,13 +57,14 @@ I) Un contador para contar el espacio utilizado por M, el otro contador contará
 es mayor que n o si las etapas que se ejecutan en M son mayores que $2^{cn}$  para alguna constante c que está relacionada con M. 
 
 Si cualquiera de las anteriores ocurre entonces se rechaza inmediatamente.  Observemos que el número total de configuraciones posibles de M es como máximo $2^{cn}$, por lo tanto, si M no se detiene en este número de pasos, entonces debe haber entrado en un bucle infinito y M ' Rechaza, después de simular M corriendo en w, si M acepta w en espacio n, M ' Acepta, en otro caso M’ rechaza.
-Por definición de SPACETM, M’ decide a SPACE. Para simular M solamente utilzamos espacio O(n). Entonces SPACETM ∈ PSPACE\\
+Por definición de SPACETM, M’ decide a SPACE. Para simular M solamente utilzamos espacio O(n). Entonces SPACETM $\in$ PSPACE\\
 
-II) Ahora Observemos que para cualquier $L \in PSPACE$ dónde L es un lenguaje existe una Maquina de Turing Determinista M que decide L usando espacio s(n) el cual es una entrada polinomial de tamaño n. Consideremos la función f: $\big \{0,1}\big \}^{n}$ \Rightarrow $\big \{0,1}\big \}^{m}$ tal que
+II) Ahora Observemos que para cualquier $L \in PSPACE$ dónde L es un lenguaje existe una Maquina de Turing Determinista M que decide L usando espacio s(n) el cual es una entrada polinomial de tamaño n.
+Consideremos la función f: $\big \{0,1\}\big \}^{n}$ $\Rightarrow$ $\big \{0,1\}\big \}^{m}$ tal que
 $f(x)=< M, x, 1^{s(n)}>.$ Dónde m es polinomial de n. La función f puede ser computada en espacio y tiempo polinomial. Por definición de SPACETM $x\in L$ syss $f(x)\in SPACETM.$ Así que SPACETM es PSPACE-hard entonces $SPACETM \in PSPACE-completo$ \\
 
 
-\therefore $ Es PSPACE-Completo.$\\
+$\therefore$ $ Es PSPACE-Completo.$\\
 
 
 
@@ -79,7 +87,7 @@ Con esta construccion veamos que:
 veamos que a’ V b es equivalente a a->b
 
 Supongamos que tenemos un ciclo que contiene a b y b’ en G. 
-Si esto pasa entonces por transitividad signfica que b→...→b’ y que b’→…→b por lo que tendriamos  b ↔ b’ lo cual es una contradiccion.
+Si esto pasa entonces por transitividad signfica que b$\rightarrow$...$\rightarrow$b’ y que b’$\rightarrow$…$\rightarrow$b por lo que tendriamos  b $\leftrightarrow$ b’ lo cual es una contradiccion.
 
 Por lo que si F es satisfacible entonces G no tiene un ciclo donde exista una literal y su negacion.
 
@@ -119,4 +127,57 @@ Para ver si algo cumple con 2-SAT’ basta con ver si hay una camino de alguna l
 \subsubsection*{5.}
 
 \subsubsection*{6.}
+
+\newpage
+\section*{Anexo}
+
+\subsubsection*{Tarea 1.1 Ejercicio 1. En clase se presentó una descripción general de cómo codificar una máquina de Turing como una cadena binaria. Completa la descripción de tal forma que una máquina universal pueda utilizarla para imitar la máquina codificada}
+
+Comencemos con la codificación de la máquina de Turing como una cadena binaria.
+
+Sea $M = (Q,\Sigma,\Gamma,\delta,s,r,t,\vdash,\sqcup)$ una máquina de Turing, con
+\begin{itemize}
+\item $Q = i$
+\item $\Sigma = j$
+\item $\Gamma = k$
+\item $s$ el m-ésimo estado
+\item $t$ el n-ésimo estado
+\item $r$ el p-ésimo estado
+\item $\vdash$ el q-ésimo caracter de $\Sigma$
+\item $\vdash$ el r-ésimo caracter de $\Sigma$ 
+\end{itemize}
+Dicha especificación será codificada por la siguiente cadena binaria:\\
+\begin{equation}
+  0^i10^j10^k10^m10^n10^p10^q10^r1.
+\end{equation}
+
+Continuamos con la codificación de una transición en delta de la forma $\delta(s_u,a_v) = (s_w,a_x,\rightarrow)$ como (2),
+mientras que una transición de la forma $\delta(s_u,a_v) = (s_w,a_x,\leftarrow)$ como (3):\\
+\begin{equation}
+  0^u10^v10^w10^x101
+\end{equation}
+\begin{equation}
+  0^u10^v10^w10^x111  
+\end{equation}
+De esta manera, podemos codificar completamente la tabla original de M.\\
+Finalmente, una cadena de entrada en $\Gamma^*$ de la forma $a_{n_1} \dots a_{n_z}$, quedará codificada por la cadena binaria:\\
+\begin{equation}
+0^{n_1}10^{n_2}1\dots0^{n_z}
+\end{equation}
+
+Recordemos que la Máquina Universal de Turing $U$ que simulará a $M$, consta de tres cintas, además de la de entrada y salida. La primera de ellas
+será utilizada para la descripción de $M$, es decir, la tabla que quedó codificada para cada transición $\delta$ como en (3); la segunda, contendrá lo que corresponde con la cinta original de $M$; y la tercera el estado en el que la $M$ se encontraría.
+
+Al iniciar $U$, en la primera cinta ya debe tener la tabla de $M$ codificada, mientras que en la tercera cinta aparecerá un 0, indicando que se encuentra en el estado inicial de la máquina original.
+
+Separados por unos, podemos considerar una cadena binaria proveniente de una codificación de transición en $\delta$, como una quinteta, por los 5 elementos en total que componen una transición. Para emular a $M$, la Máquina Universal de Turing $U$, deberá hacer lo siguiente por cada
+transición de la TM original:\\
+\begin{enumerate}
+\item Localiza en la primera cinta aquella quinteta en la que el primer componente sea igual al que se encuentra en la tercera cinta y el segundo
+  componente sea igual al que se encuentra en la segunda cinta.
+\item Copia a la tercera cinta el tercer componente de la primera cinta (el estado al que se transfiere).
+\item Sustituye la segunda cinta con lo que tiene el cuarto componente.
+\item Interpetra el movimiento de la cabeza que se encuentra en el quinto componente, moviendo acorde la cabeza de la segunda cinta. 
+\end{enumerate}
+
 \end{document}
