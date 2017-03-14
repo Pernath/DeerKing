@@ -35,12 +35,86 @@
 \rangle 1^n$ | M es una MT que acepta $\alpha$ en espacio \textit{n} $\}$ \\
 \textbf{es PSPACE-completo.} \\
 
-\noindent \textbf{Demostración: \\}
-Queremos ver que todo problema de decisión en espacio \textit{P} $\in$ \textit{PSPACE} puede ser reducido al Teorema de la Jerarquía Espacial en tiempo polinomial.
+ P.D.\\
+
+
+I) $SPACETM \in PSPACE.$\\
+
+II) Cualquier $L \in PSPACE$ se puede reducir a SPACETM\\
+ 
+Entrada < M, \alpha, $1^{n}$ >\\
+
+Construimos $M’\in TM$ para Simular M, M’ con dos contadores. \\
+
+I) Un contador para contar el espacio utilizado por M, el otro contador contará el número de pasos que va a ejecutar M. Cada vez después de que M ' Simule un paso de M, actualiza los contadores y comprueba si el espacio utilizado 
+es mayor que n o si las etapas que se ejecutan en M son mayores que $2^{cn}$  para alguna constante c que está relacionada con M. 
+
+Si cualquiera de las anteriores ocurre entonces se rechaza inmediatamente.  Observemos que el número total de configuraciones posibles de M es como máximo $2^{cn}$, por lo tanto, si M no se detiene en este número de pasos, entonces debe haber entrado en un bucle infinito y M ' Rechaza, después de simular M corriendo en w, si M acepta w en espacio n, M ' Acepta, en otro caso M’ rechaza.
+Por definición de SPACETM, M’ decide a SPACE. Para simular M solamente utilzamos espacio O(n). Entonces SPACETM ∈ PSPACE\\
+
+II) Ahora Observemos que para cualquier $L \in PSPACE$ dónde L es un lenguaje existe una Maquina de Turing Determinista M que decide L usando espacio s(n) el cual es una entrada polinomial de tamaño n. Consideremos la función f: $\big \{0,1}\big \}^{n}$ \Rightarrow $\big \{0,1}\big \}^{m}$ tal que
+$f(x)=< M, x, 1^{s(n)}>.$ Dónde m es polinomial de n. La función f puede ser computada en espacio y tiempo polinomial. Por definición de SPACETM $x\in L$ syss $f(x)\in SPACETM.$ Así que SPACETM es PSPACE-hard entonces $SPACETM \in PSPACE-completo$ \\
+
+
+\therefore $ Es PSPACE-Completo.$\\
+
+
 
 $\dots$
 
 \subsubsection*{4.}
+\textbf{Demuestra $2SAT \in NL$ } \\
+
+
+Primero veamos que para todo F en 2-SAT podemos construir una grafica dirigida G de la siguiente manera:
+
+	V(G) son las literales de F y hay una arista de a a b en E(G) si y solo si (a’ v b ) esta e F 
+
+Con esta construccion veamos que:
+
+	 F es satisfaceible si y solo si G no tiene un ciclo donde exista una literal y su negacion.
+
+=>)
+
+veamos que a’ V b es equivalente a a->b
+
+Supongamos que tenemos un ciclo que contiene a b y b’ en G. 
+Si esto pasa entonces por transitividad signfica que b→...→b’ y que b’→…→b por lo que tendriamos  b ↔ b’ lo cual es una contradiccion.
+
+Por lo que si F es satisfacible entonces G no tiene un ciclo donde exista una literal y su negacion.
+
+<=)
+
+Veamos estos haciend induccion sobre el numero de variables 
+Cuando se tienen 0 varaibles
+
+Si F no tiene variables entonces F es satisfacible y G no tiene ciclos.
+
+Hip. Ind
+
+Supongamos que se cumple cuando se tiene n variables
+
+Ahora vemos que pasa cuadno se tiene un variables mas:
+
+Tomamos una literal b que en la grafica G generada no tiene un camino de b a b’.
+
+Ahora supongamos que hay un camino de b a c y un camino de b a c’
+
+Por contraposicion tendriamos un camino de c’ a b’ y por transitividad tendiamos un camino  b a b’ lo cual sera una contradiccion.
+
+Ahora hagamos todas las literales  a las que llegamos a partir de b verdaderas, esta conjunto esta bien definido por lo anterior visto. Entonces todas las clausulas que contenga a un literal de este conjunto se satisfacen. Y nos queda una grafica G’ dada por las clausulas restantes las cuales tampoco tienen un ciclo con una literal y su negacion y por Hipotesis de induccion esta formula tambien es satisfacible.
+
+.: Si G no tiene ciclos donde existe una literal y su negacion F es satisfacible
+
+
+
+
+En libro tenemos que NL= coNL veamos que 2-SAT’ en NL implica 2-SAT en NL
+
+Para ver si algo cumple con 2-SAT’ basta con ver si hay una camino de alguna literal b a b’ y de b’ a b esto es que exista un ciclo en la grafica G generada. Por lo que podemos reducir el problema a PATH que de igual manera por lo visto en el libro PATH esta en NL.
+
+.: 2-SAT’ esta en NL 
+.: 2-SAT esta en NL
 
 \subsubsection*{5.}
 
