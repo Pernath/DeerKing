@@ -1,0 +1,66 @@
+%Especificacion
+\documentclass[12pt]{article}
+
+%Paquetes
+\usepackage[left=2cm,right=2cm,top=3cm,bottom=3cm,letterpaper]{geometry}
+\usepackage{lmodern}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+%\usepackage[spanish,activeacute]{babel}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{enumerate}
+%\usepackage{tabularx}
+%\usepackage{wasysym}
+\usepackage{graphicx}
+%\graphicspath { {tarea01/media/} }
+%\usepackage{pifont}
+
+%Preambulo
+\title{Complejidad Computacional \\ Tarea 2}
+\author{Karla Adriana Esquivel Ramírez \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
+\date{Entrega: 14/03/17 \\ Facultad de Ciencias UNAM}
+
+\begin{document}
+\maketitle
+\section*{Ejercicios}
+
+\subsubsection*{1.}
+
+\subsubsection*{2.}
+
+\subsubsection*{3.}
+\textbf{Demuestra que el lenguaje} \\
+\indent \textit{SPACETM} = $\{ \langle$M$\rangle \langle \alpha 
+\rangle 1^n$ | M es una MT que acepta $\alpha$ en espacio \textit{n} $\}$ \\
+\textbf{es PSPACE-completo.} \\
+Demostración:  
+P.D.
+
+
+I) SPACETM ∈ PSPACE.
+
+II) Cualquier L ∈ PSPACE se puede reducir a SPACETM
+ 
+Entrada < M, w, 1^{n} >
+
+Construimos M’∈ TM para Simular M, M’ con dos contadores. 
+
+Un contador para contar el espacio utilizado por M, el otro contador contará el número de pasos que va a ejecutar M. Cada vez después de que M ' Simule un paso de M, actualiza los contadores y comprueba si el espacio utilizado es mayor que n o si las etapas que se ejecutan en M son mayores que 2c n para alguna constante c que está relacionada con M. Si cualquiera de las anteriores ocurre entonces se rechaza inmediatamente.  Observemos que el número total de configuraciones posibles de M es como máximo 2cn, por lo tanto, si M no se detiene en este número de pasos, entonces debe haber entrado en un bucle infinito y M ' Rechaza, después de simular M corriendo en w, si M acepta w en espacio n, M ' Acepta, en otro caso M’ rechaza. Por definición de SPACETM, M’ decide a SPACE. Para simular M solamente utilzamos espacio O(n). Entonces SPACETM ∈ PSPACE
+
+II) Ahora Observemos que para cualquier L ∈ PSPACE dónde L es un lenguaje existe una Maquina de Turing Determinista M que decide L usando espacio s(n) el cual es una entrada polinomial de tamaño n. Consideremos la función f:{0,1}n   → {0,1}m tal que
+f(x)=< M, x, 1^{s(n)}>. Dónde m es polinomial de n. La función f puede ser computada en espacio y tiempo polinomial. Por definición de SPACETM x∈ L syss f(x)∈ SPACETM. Así que SPACETM es PSPACE-hard entonces SPACETM∈PSPACE-completo 
+
+
+.: Es PSPACE-Completo.
+\noindent \textbf{Demostración: \\}
+Queremos ver que todo problema de decisión en espacio \textit{P} $\in$ \textit{PSPACE} puede ser reducido al Teorema de la Jerarquía Espacial en tiempo polinomial.
+
+$\dots$
+
+\subsubsection*{4.}
+
+\subsubsection*{5.}
+
+\subsubsection*{6.}
+\end{document}
