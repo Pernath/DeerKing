@@ -17,14 +17,17 @@
 %\usepackage{pifont}
 
 %Preambulo
-\title{Complejidad Computacional \\ Tarea 1}
+\title{Complejidad Computacional \\ Reposición de Tarea 1}
 \author{Karla Adriana Esquivel Guzmán \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
-\date{Entrega: 06/03/17 \\ Facultad de Ciencias UNAM}
+\date{Entrega: 23/03/17 \\ Facultad de Ciencias UNAM}
+
+\setlength\parindent{0pt}
 
 \begin{document}
 \maketitle
 \section*{Ejercicios}
-\subsubsection*{1.}
+\subsubsection*{1. En clase se presentó una descripción general de cómo codificar una máquina de Turing como una cadena binaria. Completa la descripción de tal forma que una máquina universal pueda utilizarla para imitar la máquina codificada.}
+
 Comencemos con la codificación de la máquina de Turing como una cadena binaria.
 
 Sea $M = (Q,\Sigma,\Gamma,\delta,s,r,t,\vdash,\sqcup)$ una máquina de Turing, con
@@ -75,9 +78,7 @@ transición de la TM original:\\
 \item Sustituye la segunda cinta con lo que tiene el cuarto componente.
 \item Interpetra el movimiento de la cabeza que se encuentra en el quinto componente, moviendo acorde la cabeza de la segunda cinta. 
 \end{enumerate}
-\subsubsection*{2.}
-
- Demuestra que los siguientes problemas sobre gráficas (es decir, los lenguajes respectivos) están en P (elige la representación que prefieras para las gráficas):
+\subsubsection*{2. Demuestra que los siguientes problemas sobre gráficas (es decir, los lenguajes respectivos) están en P (elige la representación que prefieras para las gráficas):}
  
  \begin{itemize}
   \item CONNECTED: el conjunto de todas las gráficas conexas.
@@ -94,67 +95,5 @@ transición de la TM original:\\
     Sea G(V, E) una gráfica. En este caso también podemos utilizar el algoritmo BFS, pero ahora marcamos a cada vértice que visitemos con uno de dos colores de la siguiente manera: coloreamos al vértice inicial con un color C1, a sus vecinos con otro color C2, a los vecinos de los vecinos de nuevo con C1, y así sucesivamente intercalando el color C1 con C2. De esa manera podemos poner a los vértices marcados con C1 en el conjunto A y a los marcados con C2 en el conjunto B. Si ningún vértice termina con algún vecino coloreado con su mismo color, entonces la gráfica es bipartita, de otro modo no lo es. Si la gráfica no es conexa podemos hacer éste procedimiento sobre cada componente de la gráfica. \\
 
     En el caso anterior habíamos visto que BFS corre en tiempo polinomial, y por lo tanto $BIPARTITE \in P$.
-  
-  
- \end{itemize}
-
-\subsubsection*{3.}
-\textbf{Demostración:\\}
-\\
-Primero supongamos que $L_{S}^{2} \in P$.
-Esto quiere decir que la representación binaria en base 2 toma un tiempo polinomial. Además,  sabemos que convertir de base 2 a otra con codificación binaria nos lleva un tiempo $O(n^2)$ con algoritmos como "Double Dabble" que sigue siendo polinomial.\\
-Por otro lado, suponiendo que $L_{S}^{b} \in P$, para convertir de la representación binaria de una base a la base 2 se puede pasar el número a su lenguaje original ($\{0, \dots, b-1\}$) en tiempo $O(n)$ y después convertir a la representación en $L_{S}^{2}$ en $O(\log n)$ que es polinomial.\\
-Por lo tanto, la base no tiene ningún efecto sobre la pertenencia en P. 
-\subsubsection*{4.}
-
-Demuestra que los siguientes lenguajes están en NP:
-
- \begin{itemize}
-  \item 2COL = \{<G> | <G> codifica una gráfica que tiene una 2-coloración\}.
-  
-  Probar que 2COL $\in$ NP.
-
-  Entrada para $TM = <A,w,c>$.
-  
-Donde $A = G$ y $G$ es una gráfica.
-
-$c$ es Una Lista de nodos coloreados.
-
-$w$ se desccribe de la siguiente manera.
-
-\begin{enumerate}
- \item Se checa que todos los nodos de G se encuentran en la Lista.
- \item Se checa que todos los nodos de la Lista se encuentren en G.
- \item Checar que para cualesquiera dos nodos conectados por una arista (adyacentes) serán de colores distintos, respectivamente C1 y C2.
- \item Acepta si 1,2 y 3 se cumplen.
-\end{enumerate}
-
-  \item 3COL = \{<G> | <G> codifica una gráfica que tiene una 3-coloración\}.
-  
-  Probar que 3COL $\in$ NP.
-
-  Entrada para $TM = <A,w,c>$.
-  
-Donde $A = G$ y $G$ es una gráfica.
-
-$c$ es Una Lista de nodos coloreados.
-
-$w$ se desccribe de la siguiente manera.
-
-\begin{enumerate}
- \item Se checa que todos los nodos de G se encuentran en la Lista.
- \item Se checa que todos los nodos de la Lista se encuentren en G.
- \item Checar que para cualesquiera dos nodos conectados por una arista (adyacentes) serán de colores distintos, respectivamente C1 y C2.
- \item Acepta si 1,2 y 3 se cumplen.
-\end{enumerate}
-
-  \item  ¿Cuáles están en P?.
-  
-  2COL $\in$ P porque una grafica es 2-coloreable si es una gráfica bipartita y por el ejercico 2 sabemos que esto esta en P.
-  
-  3COL $\in$ NP-Duro según la literatura.
-
-
- \end{itemize}
-
+ \end{itemize}  
 \end{document}
