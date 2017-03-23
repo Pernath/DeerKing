@@ -18,7 +18,7 @@
 
 %Preambulo
 \title{Complejidad Computacional \\ Tarea 1}
-\author{Karla Adriana Esquivel Ramírez \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
+\author{Karla Adriana Esquivel Guzmán \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
 \date{Entrega: 06/03/17 \\ Facultad de Ciencias UNAM}
 
 \begin{document}
@@ -35,7 +35,7 @@ Sea $M = (Q,\Sigma,\Gamma,\delta,s,r,t,\vdash,\sqcup)$ una máquina de Turing, c
 \item $s$ el m-ésimo estado
 \item $t$ el n-ésimo estado
 \item $r$ el p-ésimo estado
-\item $\vdash$ el q-ésimo caracter de $\Sigma$
+\item $\sqcup$ el q-ésimo caracter de $\Sigma$
 \item $\vdash$ el r-ésimo caracter de $\Sigma$ 
 \end{itemize}
 Dicha especificación será codificada por la siguiente cadena binaria:\\
@@ -43,13 +43,14 @@ Dicha especificación será codificada por la siguiente cadena binaria:\\
   0^i10^j10^k10^m10^n10^p10^q10^r1.
 \end{equation}
 
-Continuamos con la codificación de una transición en delta de la forma $\delta(s_u,a_v) = (s_w,a_x,\rightarrow)$ como (2),
+Continuamos con la codificación de una transición en delta\footnote{Con las cadenas finales, después del último 1 separador 
+0 := $\rightarrow$ y 00 := $\leftarrow$.} de la forma $\delta(s_u,a_v) = (s_w,a_x,\rightarrow)$ como (2),
 mientras que una transición de la forma $\delta(s_u,a_v) = (s_w,a_x,\leftarrow)$ como (3):\\
 \begin{equation}
-  0^u10^v10^w10^x101
+  0^u10^v10^w10^x10
 \end{equation}
 \begin{equation}
-  0^u10^v10^w10^x111  
+  0^u10^v10^w10^x100  
 \end{equation}
 De esta manera, podemos codificar completamente la tabla original de M.\\
 Finalmente, una cadena de entrada en $\Gamma^*$ de la forma $a_{n_1} \dots a_{n_z}$, quedará codificada por la cadena binaria:\\
@@ -57,6 +58,9 @@ Finalmente, una cadena de entrada en $\Gamma^*$ de la forma $a_{n_1} \dots a_{n_
 0^{n_1}10^{n_2}1\dots0^{n_z}
 \end{equation}
 
+Sólo resta decir para completar la codificación que podemos designar con $\langle M\rangle$ a la concatenación de (1) junto con las codificaciones de la forma (2) y (3), mientras que a la entrada codificada como en (4), la designaremos $\langle \alpha\rangle$. Combinadas en una sola cadena,
+podemos usar un símbolo de separación predefinido como $\#$ para obtener: $\langle M\rangle \# \langle \alpha\rangle$.\\
+ 
 Recordemos que la Máquina Universal de Turing $U$ que simulará a $M$, consta de tres cintas, además de la de entrada y salida. La primera de ellas
 será utilizada para la descripción de $M$, es decir, la tabla que quedó codificada para cada transición $\delta$ como en (3); la segunda, contendrá lo que corresponde con la cinta original de $M$; y la tercera el estado en el que la $M$ se encontraría.
 
