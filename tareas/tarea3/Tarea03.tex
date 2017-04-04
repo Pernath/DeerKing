@@ -31,6 +31,30 @@ temporales. Recuerda que $SAT$ es $NP-completo$.}
 \subsubsection*{2. Demuestra que si $3SAT$ es temporalmente reductible polinomialmente a $\overline{3SAT}$ entonces $PH = NP$.}
 \subsubsection*{3. Demuestra que si $P^A = NP^A$ (para algún lenguaje $A$), entonces $PH^A \subseteq P^A$ .}
 \subsubsection*{4. Demuestra que si $EXP \subseteq P/poli$, entonces $EXP = \Sigma^p_2$ .}
-
+\underline{\textbf{\textit{Dem.}}}\\
+Sea $L \in EXP$, entonces existe una máquina de Turing \textit{time-oblivious} $M$ que decide $L$ en tiempo $2^{p(n)}$ $p.a.$ polinomio $p$. Sea $s \in \{0,1\}^n$ una cadena de entrada para $M$. Sabemos por la definición de $M$ que para cada $i \in [2^{p(n)}]$ denotamos con $z_i$ la codificación de
+la i-ésima ``instantánea'' de la ejecución de $M$ con la entrada $s$.
+Como $EXP \subseteq P/poli$, entonces existe un circuito $C$ de tamaño $q(n)$ (p.a. polinomio $q$), tal que calcula $z_i$ a partir de una $i$.
+La correctud de lo que calcula este circuito mencionado puede ser expresado como un predicado $coNP$. Así, \\
+\begin{equation}
+  s \in L \iff \exists C \in \{0,1\}^{q(n)}\;\; \forall i,i1,...,ik \in \{0,1\}^{p(n)}\;\; T(s,C(i),C(i_1),...,C(i_k)) = 1
+\end{equation}
+donde $T$ es una $TM$ que verifica esas condiciones en tiempo polinomial. Se puede entonces concluir que $L \in \Sigma^P_2$, que es lo que queremos.
+Para probar esto, consideremos $p(n) = 2^{n^k}$. Consideremos cada entrada $(i,t)$ en la tabla de $M$, codifica una cadena $z_{i,t}$, \textit{i.e.}, el contenido
+de la celda $i$, al momento $t$, siempre que la cabeza lectora esté en la entrada $i$ al momento $t$, y de ser así, $z$ almacena el estado interno
+de $M$. Ahora consideremos
+\begin{equation}
+  L_M = \{\langle s, i, t, z\rangle \;\;\;|\;\;\; con\;\;la\;\;entrada\;\;s\;\;tenemos\;\; z_{i,t} = z \;\;\;para\;\; M \}
+\end{equation}
+Simulando $M$ tendremos que $L_M \in EXP \subseteq P/poli$. Utilizando
+circuitos de tamaño polinomial para $L_M$, podemos construir un circuito
+$C$ de múltiple salida de tamaño polinomial, tal que $C(\langle s,i,t\rangle)$ = $z$. Como buscábamos en $(1)$, decimos entonces que:\\
+\begin{quote}
+%  \center
+$  s \in L \iff \exists C\;\; \forall i,t\;\; t.q.\;\; C(\langle s,i,t\rangle)\;\; acepta\;\;
+si$\\
+$C(\langle s,i-t,t-1\rangle),\;\;C(\langle s,i,t-1\rangle),\;\;C(\langle s,i+1,t-t1\rangle)\;\; y\;\; C(\langle s,1,2^{n^k}\rangle)\;\; aceptan.$
+\end{quote}
+Por lo tanto si $EXP \subseteq P/poli$, entonces $EXP = \Sigma^p_2$.
 Todos los ejercicios son sacados de la Internet, con variaciones.
 \end{document}
