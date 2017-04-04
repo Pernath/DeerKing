@@ -13,21 +13,41 @@
 %\usepackage{tabularx}
 %\usepackage{wasysym}
 \usepackage{graphicx}
-%\graphicspath { {tarea01/media/} }
 %\usepackage{pifont}
 
 %Preambulo
 \title{Complejidad Computacional \\ Tarea 2.1}
 \author{Karla Adriana Esquivel Guzmán \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
-\date{Entrega: 03/04/17 \\ Facultad de Ciencias UNAM}
+\date{Entrega: 04/04/17 \\ Facultad de Ciencias UNAM}
 
 \setlength\parindent{0pt}
 
 \begin{document}
 \maketitle
 \section*{Ejercicios}
-\subsubsection*{1. Demuestra que el lenguaje $\Sigma_iSAT$ es completo para $\Sigma^P_i$ bajo reducciones polinomiales
+\subsubsection*{1. Demuestra que el lenguaje $\Sigma _iSAT$ es completo para $\Sigma ^P_i$ bajo reducciones polinomiales
 temporales. Recuerda que $SAT$ es $NP-completo$.}
+\textbf{Demostración:} Por casos.
+\begin{itemize}
+\item \textbf{Caso i = 1}\\ Para $\Sigma_1SAT$, como $\Sigma^P_1 = NP$ tenemos que $\Sigma _1SAT = SAT$ y ya sabemos que SAT es $NP-completo$. Entonces, en particular, $\Sigma _1SAT$ es $\Sigma^P_1-completo$. 
+\item \textbf{Caso i > 1}\\ Por demostrar que $\Sigma _{i}SAT$ es $\Sigma^P_{i}-completo$.\\ 
+Primero, definimos  
+\begin{equation} \label{eq:1}
+ \Sigma _{i}SAT = \exists u_1 \forall u_2 \exists \dots Q_{i}u_{i}\varphi(u_1,u_2,\dots,u_{i}) = 1
+\end{equation}
+donde $Q_{i}$ es un cuantificador($\exists$ o $\forall$ dependiendo de la paridad de $i$), $\varphi$ es una fórmula booleana, y cada $u_k$ es un vector de variables booleanas.\\
+Por construcción, $\Sigma _iSAT \in \Sigma ^P_i$. Falta ver que sea $\Sigma ^P_i-difícil$\\
+Tenemos que: \\
+\begin{equation} \label{eq:2}
+\Sigma^p_{i} = \{ L \;|\; \exists M \in TM \;(en\;tiempo\;polinomial)\;\;t.\;q.\;\; \exists \beta _1 \forall \beta _2 \dots Q\beta _{i}\alpha \beta _1 \dots \beta _{i} \in L(M)\}
+\end{equation}
+entonces $x \in L$ sii
+\begin{equation} \label{eq:3}
+ \exists \beta _1 \forall \beta _2 \exists \dots Q_i \beta _i M(x, \beta _1, \dots , \beta _i) = 1
+\end{equation}
+Notamos que \ref{eq:1} y \ref{eq:3} son muy parecidas, entonces podríamos resolver la pregunta ¿$x \in L$? con una asignación de valores de verdad en $\Sigma _iSAT$, es decir, podemos reducir L a una instancia de $\Sigma _iSAT$. Además, L es un lenguaje cualquiera en $\Sigma ^P_i$, por lo que $\Sigma _iSAT$ es $\Sigma ^P_i - difícil$. \\
+\\$\therefore \Sigma _iSAT \;es\; \Sigma ^P_i-completo$
+\end{itemize}
 \subsubsection*{2. Demuestra que si $3SAT$ es temporalmente reductible polinomialmente a $\overline{3SAT}$ entonces $PH = NP$.}
 Sabemos que $3SAT$ es $NP-completo$, entonces $\overline{3SAT} \in coNP$. \\
 Supongamos que $3SAT$ es reductible a $\overline{3SAT}$, esto implica que $NP = coNP$. Como $\sum_1^p = NP$ y $\prod_1^p = coNP$, entonces $\sum_1^p = \prod_1^p$. Como vimos en clase, para toda $i \geq 1$ si $\sum_i^p = \prod_i^p$ entonces $PH = \sum_i^p$, o sea que la jerarquía se colapsa al nivel $i$. Como $\sum_1^p = \prod_1^p$ entonces $PH = \sum_1^p = NP$. \\
