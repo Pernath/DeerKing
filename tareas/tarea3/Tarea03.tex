@@ -29,6 +29,10 @@
 \subsubsection*{1. Demuestra que el lenguaje $\Sigma_iSAT$ es completo para $\Sigma^P_i$ bajo reducciones polinomiales
 temporales. Recuerda que $SAT$ es $NP-completo$.}
 \subsubsection*{2. Demuestra que si $3SAT$ es temporalmente reductible polinomialmente a $\overline{3SAT}$ entonces $PH = NP$.}
+Sabemos que $3SAT$ es $NP-completo$, entonces $\overline{3SAT} \in coNP$. \\
+Supongamos que $3SAT$ es reductible a $\overline{3SAT}$, esto implica que $NP = coNP$. Como $\sum_1^p = NP$ y $\prod_1^p = coNP$, entonces $\sum_1^p = \prod_1^p$. Como vimos en clase, para toda $i \geq 1$ si $\sum_i^p = \prod_i^p$ entonces $PH = \sum_i^p$, o sea que la jerarquía se colapsa al nivel $i$. Como $\sum_1^p = \prod_1^p$ entonces $PH = \sum_1^p = NP$. \\
+Por lo tanto si $3SAT$ es reductible a $\overline{3SAT}$ (o sea $NP = coNP$), entonces $PH = NP$.
+
 \subsubsection*{3. Demuestra que si $P^A = NP^A$ (para algún lenguaje $A$), entonces $PH^A \subseteq P^A$ .}
 \subsubsection*{4. Demuestra que si $EXP \subseteq P/poli$, entonces $EXP = \Sigma^p_2$ .}
 
