@@ -27,27 +27,64 @@
 \section*{Ejercicios}
 \subsubsection*{1. Demuestra que el lenguaje $\Sigma _iSAT$ es completo para $\Sigma ^P_i$ bajo reducciones polinomiales
 temporales. Recuerda que $SAT$ es $NP-completo$.}
-\textbf{Demostración:} Por casos.
-\begin{itemize}
-\item \textbf{Caso i = 1}\\ Para $\Sigma_1SAT$, como $\Sigma^P_1 = NP$ tenemos que $\Sigma _1SAT = SAT$ y ya sabemos que SAT es $NP-completo$. Entonces, en particular, $\Sigma _1SAT$ es $\Sigma^P_1-completo$. 
-\item \textbf{Caso i > 1}\\ Por demostrar que $\Sigma _{i}SAT$ es $\Sigma^P_{i}-completo$.\\ 
+\textbf{Demostración:}
 Primero, definimos  
-\begin{equation} \label{eq:1}
- \Sigma _{i}SAT = \exists u_1 \forall u_2 \exists \dots Q_{i}u_{i}\varphi(u_1,u_2,\dots,u_{i}) = 1
-\end{equation}
+\begin{equation*} \label{eq:1}
+ \Sigma _{i}SAT = \{ \langle \varphi \rangle : \exists u_1 \forall u_2 \exists \dots Q_{i}u_{i}\varphi(u_1,u_2,\dots,u_{i}) = 1 \}
+\end{equation*}
 donde $Q_{i}$ es un cuantificador($\exists$ o $\forall$ dependiendo de la paridad de $i$), $\varphi$ es una fórmula booleana, y cada $u_k$ es un vector de variables booleanas.\\
-Por construcción, $\Sigma _iSAT \in \Sigma ^P_i$. Falta ver que sea $\Sigma ^P_i-difícil$\\
-Tenemos que: \\
-\begin{equation} \label{eq:2}
-\Sigma^p_{i} = \{ L \;|\; \exists M \in TM \;(en\;tiempo\;polinomial)\;\;t.\;q.\;\; \exists \beta _1 \forall \beta _2 \dots Q\beta _{i}\alpha \beta _1 \dots \beta _{i} \in L(M)\}
-\end{equation}
-entonces $x \in L$ sii
-\begin{equation} \label{eq:3}
- \exists \beta _1 \forall \beta _2 \exists \dots Q_i \beta _i M(x, \beta _1, \dots , \beta _i) = 1
-\end{equation}
-Notamos que \ref{eq:1} y \ref{eq:3} son muy parecidas, entonces podríamos resolver la pregunta ¿$x \in L$? con una asignación de valores de verdad en $\Sigma _iSAT$, es decir, podemos reducir L a una instancia de $\Sigma _iSAT$. Además, L es un lenguaje cualquiera en $\Sigma ^P_i$, por lo que $\Sigma _iSAT$ es $\Sigma ^P_i - difícil$. \\
-\\$\therefore \Sigma _iSAT \;es\; \Sigma ^P_i-completo$
+
+Para $\Sigma_1SAT$, observemos que
+\begin{enumerate}
+\item $\Sigma_1SAT$ = $\{ \langle \varphi \rangle : \exists u_1 \varphi(u_1) = 1 \}$ 
+\item $\Sigma^P_1 = NP$
+\end{enumerate}
+Así que $\Sigma _1SAT = SAT$ y ya sabemos que SAT es $NP-completo$. Entonces, en este caso, $\Sigma_1SAT$ es $\Sigma^P_1-completo$. \\
+
+Ahora queremos demostrar que $\Sigma _{i}SAT$ es $\Sigma^P_{i}-completo$, para $i > 1$.\\
+Recordemos que podemos definir a las clases $\Sigma_i$ con Máquinas de Turing con Oráculo de la siguiente manera: \\
+\begin{equation*}
+\Sigma_i = NP^{\Sigma_{i-1}}
+\end{equation*} 
+Observemos que en el caso i = 2 tenemos \\
+\begin{equation*}
+\Sigma_2 = NP^{NP} = NP^{SAT} = NP^{\Sigma_1SAT}
+\end{equation*}
+Probemos que $\Sigma_i = NP^{\Sigma_{i-1}SAT}$ usando cuantificadores, a partir del caso $i=2$.\\
+
+\fbox{\textbf{$\subseteq$}} Tomemos $L \in \Sigma_2$ así que $\exists p$ un polinomio y $M \in TM \; polinomial$ tal que
+\begin{equation*}
+x \in L \iff \exists v_1 \in \{ 0,1 \}^{p(|x|)} \forall v_2 \in \{ 0,1 \}^{p(|x|)} M(x,u_1,u_2) = 1  
+\end{equation*}
+Sea $\bar{L}$ el complemento de $L$, se tiene que $\bar{L} \in \Pi_2$ así que
+\begin{equation*}
+y \in \bar{L} \iff \forall w_1 \in \{ 0,1 \}^{q(|y|)} \exists w_2 \in \{ 0,1 \}^{q(|y|)} \bar{M}(y,w_1,w_2) = 1
+\end{equation*}
+Definimos $L'$ de la siguiente manera
+\begin{equation*}
+\langle y,w_1 \rangle \in L' \iff \exists w_2 \in \{ 0,1 \}^{q(|y|)} M(y,w_1, w_2) = 1
+\end{equation*}
+Así que $L' \in \Sigma_1$. Luego $\exists f$ una reducción polinomial tal que $\langle y, w_1 \rangle \in L' \iff f(y,w_1) \in \Sigma_1SAT$, es decir, $f(y,w_1)$ ($\varphi(z)$) es una fórmula en $\Sigma_1SAT$, así $\exists w_2$ tal que $\varphi(w_2) = 1$. \\
+Construyamos $m \in TM$ de la siguiente forma: \\
+$m = \; " \; Con \; entrada \; \langle x \rangle$ 
+\begin{enumerate}
+\item Construyamos (no deterministamente) a $w_1$.
+\item Usemos $f$ para construir $\varphi(x,w_1)(z)$.
+\item Consultemos a $\Sigma_1SAT$ si $\varphi(x,w_1)(z)$.
+\item Si $\Sigma_1SAT$ rechaza, acepto.
+\item Rechazo en cualquier otro caso.
+\end{enumerate}
+\fbox{\textbf{$\supseteq$}} Ahora probemos que $NP^{SAT} \in \Sigma_2$.\\
+Sea $L \in NP^{SAT}$, intuitivamente, si \textit{L} puede ser decidido en tiempo polinomial por una Máquina de Turing con Oráculo \textit{M} entonces podríamos decir que existen elecciones no deterministas \textit{y}, consultas al oráculo $q_1, \dots, q_k$ y respuestas del oráculo $ a_1, \dots, a_k$ tales que \textit{M} acepta una entrada \textit{x} en tiempo polinomial, lo que implicaría que $NP = coNP$. La falla de este razonamiento está en que debemos incluir una condición que requiera que las respuestas del oráculo ($ a_1, \dots, a_k$) sean válidas para las consultas $q_1, \dots, q_k$ \textit{sii} $q_j \in SAT$. Así, podemos describir a \textit{L} si observamos que $x \in L \iff \exists y, q_1,\dots,q_k,a_1,\dots,a_k$ tales que \textit{M} acepta \textit{x} y $a_j = 1 \iff q_j \in SAT$. Sin embargo, decidir la relación "\textit{M} acepta \textit{x} $a_j = 1 \iff q_j \in SAT$ " requiere decidir $SAT$, así que nos gustaría reescribir esta relación en términos de una relación de tiempo \textit{polinomial}. Podemos hacer esto si observamos que $q_j \in SAT \iff \exists x^Y_j$ tal que $q_j(x^Y_j) = 1$ y $q_j \notin SAT \iff \forall x^N_j, q_j(x^N_j) = 0$. De este modo, reescribimos la caracterización de \textit{L} del modo siguiente
+\begin{equation*}
+x \in L \iff \exists y, q_1,\dots,q_k,a_1,\dots,a_k, x^Y_1,\dots,x^Y_k \; tales  \; que \; \forall x^N_1,\dots,x^N_k 
+\end{equation*}
+\begin{itemize}
+\item \textit{M} acepta \textit{x}.
+\item $a_j = 1 \implies q_j(x^Y_j) = 1$.
+\item $a_j = 0 \implies q_j(x^N_j) = 0$.
 \end{itemize}
+
 \subsubsection*{2. Demuestra que si $3SAT$ es temporalmente reductible polinomialmente a $\overline{3SAT}$ entonces $PH = NP$.}
 Sabemos que $3SAT$ es $NP-completo$, entonces $\overline{3SAT} \in coNP$. \\
 Supongamos que $3SAT$ es reductible a $\overline{3SAT}$, esto implica que $NP = coNP$. Como $\sum_1^p = NP$ y $\prod_1^p = coNP$, entonces $\sum_1^p = \prod_1^p$. Como vimos en clase, para toda $i \geq 1$ si $\sum_i^p = \prod_i^p$ entonces $PH = \sum_i^p$, o sea que la jerarquía se colapsa al nivel $i$. Como $\sum_1^p = \prod_1^p$ entonces $PH = \sum_1^p = NP$. \\
