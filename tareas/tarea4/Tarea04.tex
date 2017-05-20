@@ -1,4 +1,4 @@
-%Especificacion
+''%Especificacion
 \documentclass[12pt]{article}
 
 %Paquetes
@@ -29,5 +29,15 @@
 \subsubsection*{1. Demuestra que si $P = NP$, entonces existe un lenguaje $EXP$ que requiere circuitos de tamaño $\sfrac{2^{n}}{n}$.} 
 \subsubsection*{2. Describe un circuito $NC$ para calcular el producto de dos matrices de $n \times n$.}
 \subsubsection*{3. Demuestra que $L$ es $P-completo$ implica que $L \in NC$ si y sólo si, $P=NC$ }
-
+Primero, por definición, tenemos que $L$ es $P-completo \; sii \;$ $L \in P$ y $\forall L' \in P$ \[ L' \leq_{logspace} L \]
+Además. sabemos que $L \in NC^i$ si $\exists c > 0$ tal que $L$ puede ser decidido por una familia de circuitos $\{C_n\}$ \textit{logspace uniformes} con tamaño $\mathcal{O}(n^c)$ y profundidad $\mathcal{O}(log^in)$.\\
+La clase de Nick es $NC = \displaystyle\bigcup_{i \leq 1} NC^i$ \\
+Como $\{C_n\}$ es \textit{logspace uniforme} cumple las siguientes propiedades.
+\begin{enumerate}
+\item $C_i$ contiene solo circuitos $\land, \not, \lor$
+\item tiene $i$ entradas
+\item tiene tamaño $\mathcal{O}(n^c)$
+\item tiene profundidad $log^ci$
+\item hay una $\mathsf{M \in TM}$ que calcula en tiempo polinomial el circuito $c_i$ a partir de la entrada $1^i$
+\end{enumerate}
 \end{document}
