@@ -1,4 +1,4 @@
-''%Especificacion
+%Especificacion
 \documentclass[12pt]{article}
 
 %Paquetes
@@ -6,28 +6,107 @@
 \usepackage{lmodern}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish,activeacute]{babel}
+%\usepackage[spanish,activeacute]{babel}
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{enumerate}
-\usepackage{xfrac}
 %\usepackage{tabularx}
 %\usepackage{wasysym}
 \usepackage{graphicx}
 %\usepackage{pifont}
+\usepackage{qtree}
 
 %Preambulo
 \title{Complejidad Computacional \\ Tarea 2.2}
 \author{Karla Adriana Esquivel Guzmán \\ Andrea Itzel González Vargas\\ Luis Pablo Mayo Vega \\ Carlos Gerardo Acosta Hernández}
-\date{Entrega: 02/05/17 \\ Facultad de Ciencias UNAM}
+\date{Entrega: 25/04/17 \\ Facultad de Ciencias UNAM}
 
 \setlength\parindent{0pt}
 
 \begin{document}
 \maketitle
 \section*{Ejercicios}
-\subsubsection*{1. Demuestra que si $P = NP$, entonces existe un lenguaje $EXP$ que requiere circuitos de tamaño $\sfrac{2^{n}}{n}$.} 
+\subsubsection*{1. Demuestra que si $P = NP$, entonces existe un lenguaje $EXP$ que requiere circuitos de tamaño ${2^{n}}/{n}$.} 
+\textbf{Demostración:}
+Por el teorema de Meyer (teorema 6.20 del libro) Implica que si $P=NP$ entonces $Exp$ $\not \subset$ $P/Poly$.\\
+Entonces como $Exp$ $\not\in$ $P/Poly$ por lo tanto debe existir un lenguaje $L$ $\in$ $EXP$ que requiere un circuito de tamaño $2^n$/$n$.
 \subsubsection*{2. Describe un circuito $NC$ para calcular el producto de dos matrices de $n \times n$.}
+\textbf{Demostración:}
+Primero veamos el caso para matrices $2x2$ \\
+
+\[A= \left(
+\begin{array}{cc}
+\textsubscript{a} & \textsubscript{b}  \\
+\textsubscript{c} & \textsubscript{d}  \\
+\end{array} 
+\right)\]
+
+\[B= \left(
+\begin{array}{cc}
+\textsubscript{f} & \textsubscript{g}  \\
+\textsubscript{h} & \textsubscript{i}  \\
+\end{array} 
+\right)\]
+
+\[AB= \left(
+\begin{array}{cc}
+\textsubscript{af + bh} & \textsubscript{ag + bj}  \\
+\textsubscript{cf + dh} & \textsubscript{cg + dj}  \\
+\end{array} 
+\right)\] 
+
+\newpage
+
+Para cada entrada de la matriz AB la calcularemos con el siguiente circuito \\
+
+
+
+\Tree [.$\vee$ [.{\sc $\wedge$} {\bf a} f ] [.{\sc $\wedge$} {\bf b} h ]  ]\\
+
+
+
+Ahora veamos para una matriz de $3x3$ \\
+
+\[A= \left(
+\begin{array}{ccc}
+\textsubscript{a} & \textsubscript{b} & \textsubscript{c} \\
+\textsubscript{d} & \textsubscript{e} & \textsubscript{f} \\
+\textsubscript{g} & \textsubscript{h} & \textsubscript{i} \\
+\end{array} 
+\right)\]
+
+\[B= \left(
+\begin{array}{ccc}
+\textsubscript{l} & \textsubscript{m} & \textsubscript{n} \\
+\textsubscript{o} & \textsubscript{p} & \textsubscript{q} \\
+\textsubscript{r} & \textsubscript{s} & \textsubscript{t} \\
+\end{array} 
+\right)\]
+
+\[AB= \left(
+\begin{array}{ccc}
+\textsubscript{al + bo + cr} & \textsubscript{...} & \textsubscript{...} \\
+\vdots & \vdots & \vdots \\
+\end{array} 
+\right)\] \\
+
+El circuito quedaría\\
+
+Para la entrada [1,1] el valor de las hojas.\\
+
+
+    \Tree[.$\vee$ [.$\vee$ [.$\wedge$ a f ] 
+      [.$\wedge$ b o ] ] [.$\vee$ [.$\wedge$ c r ] ] ] \\
+      
+      
+Podemos generalizar un árbol para las matrices de nxn que tengan profundidad de $log2n$ donde las primeras $(log2n)-1$ niveles son para ir dividiendo por la mitad los OR (Sumas) que se deben hacer para obtener el valor de la entrada y el último nivel hace el AND (Multiplicación).\\
+
+
+\newpage
+
+
+
+
 \subsubsection*{3. Demuestra que $L$ es $P-completo$ implica que $L \in NC$ si y sólo si, $P=NC$ }
 Primero, por definición, tenemos que $L$ es $P-completo \; sii \;$ $L \in P$ y $\forall L' \in P$ \[ L' \leq_{logspace} L \]
 Además. sabemos que $L \in NC^i$ si $\exists c > 0$ tal que $L$ puede ser decidido por una familia de circuitos $\{C_n\}$ \textit{logspace uniformes} con tamaño $\mathcal{O}(n^c)$ y profundidad $\mathcal{O}(log^in)$.\\
