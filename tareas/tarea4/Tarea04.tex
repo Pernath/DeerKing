@@ -15,6 +15,7 @@
 \usepackage{graphicx}
 %\usepackage{pifont}
 \usepackage{qtree}
+\newcommand*{\QEDB}{\hfill\ensuremath{\square}}%
 
 %Preambulo
 \title{Complejidad Computacional \\ Tarea 2.2}
@@ -104,19 +105,29 @@ Podemos generalizar un árbol para las matrices de nxn que tengan profundidad de
 
 \newpage
 
-
-
-
 \subsubsection*{3. Demuestra que $L$ es $P-completo$ implica que $L \in NC$ si y sólo si, $P=NC$ }
-Primero, por definición, tenemos que $L$ es $P-completo \; sii \;$ $L \in P$ y $\forall L' \in P$ \[ L' \leq_{logspace} L \]
-Además. sabemos que $L \in NC^i$ si $\exists c > 0$ tal que $L$ puede ser decidido por una familia de circuitos $\{C_n\}$ \textit{logspace uniformes} con tamaño $\mathcal{O}(n^c)$ y profundidad $\mathcal{O}(log^in)$.\\
-La clase de Nick es $NC = \displaystyle\bigcup_{i \leq 1} NC^i$ \\
-Como $\{C_n\}$ es \textit{logspace uniforme} cumple las siguientes propiedades.
-\begin{enumerate}
-\item $C_i$ contiene solo circuitos $\land, \not, \lor$
-\item tiene $i$ entradas
-\item tiene tamaño $\mathcal{O}(n^c)$
-\item tiene profundidad $log^ci$
-\item hay una $\mathsf{M \in TM}$ que calcula en tiempo polinomial el circuito $c_i$ a partir de la entrada $1^i$
-\end{enumerate}
+
+\fbox{\textbf{$\Rightarrow$}} Suponemos que \textbf{$L \in NC$} \\
+
+\textbf{P.D.} $P = NC$ \\
+
+$L \in NC$ y es $P-completo$, por lo que
+  \begin{gather}
+    \forall L' \in P,\  L' \leq_{NC} L
+  \end{gather}
+  i.e. toda $L'$ en $P$ es $NC$ reductible a $L$. Por otro lado tenemos que
+  \begin{gather}
+    si\ \ L_1 \leq_{NC} L_2\ \ y\ \ L_2 \in NC,\ \ entonces\ \ L_1 \in NC    
+  \end{gather}
+  Por (1) y (2) sabemos entonces que $\forall L' \in P$, $L' \in NC$. Como todo $L'$ en $P$ pertenece también a $NC$ (i.e. $P \subseteq NC$) y $NC \subseteq P$, entonces $P = NC$. \\
+
+  \fbox{\textbf{$\Leftarrow$}} Suponemos que \textbf{$P = NC$} \\
+
+  \textbf{P.D.} L $\in$ NC \\
+
+  L es $P-completo$, entonces $L \in P$. Ya que $P = NC$, entonces $L \in NC$.
+  \begin{flushright}
+    \QEDB
+  \end{flushright}
+
 \end{document}
