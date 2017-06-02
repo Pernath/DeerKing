@@ -10,6 +10,7 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{enumerate}
+\usepackage{enumitem}
 %\usepackage{tabularx}
 %\usepackage{wasysym}
 \usepackage{graphicx}
@@ -27,7 +28,26 @@
 \begin{document}
 \maketitle
 \section*{Ejercicios}
-\subsubsection*{1.} 
+\subsubsection*{1.}
+Sea $L \in \{0,1\}^*$ tal que existe una PTM con tiempo polinomial de ejecución tal que $\forall \; \alpha \in \{0,1\}^*$
+
+\begin{enumerate}[label=\alph*)]
+\item Si $\alpha \in L$ entonces $Pr[M(\alpha) = 1] \geq n^{-c}$
+\item Si $\alpha \notin L$ entonces $Pr[M(\alpha) = 1] = 0$
+\end{enumerate}
+Demuestra que para todo $d > 0$ existe una $M' \in PTM$ con tiempo polinomial de ejecución tal que $\forall \;\alpha \in \{0,1\}^*$:
+\begin{enumerate}[label=\alph*)]
+\item Si $\alpha \in L$ entonces $Pr[M(\alpha) = 1] \geq 1 - 2^{-n^d}$;
+\item Si $\alpha \notin L$ entonces $Pr[M(\alpha) = 1] = 0$
+\end{enumerate}
+\textsf{\textbf{Demostración:}}\\
+\textbf{Teorema (Cota de Chernorff)}: Sean $X_1, \dots, X_n$ un conjunto de variables booleanas aleatorias tales que cada $X_i$ es un bit igual a 1 con probabilidad $\leq p$. Entonces:
+\[Pr[|\Sigma_{i=1}^k X_i - pk | > \delta pk] < e^{-{\dfrac{\delta^2}4}pk}.\]
+para una $\delta$ lo suficientemente pequeña. \\
+\textit{M'} simulará al \textit{M} con la entrada $\alpha$ $k=n^{2c+d}$ veces. \textit{M'} acepta si al menos una de las simulaciones acepta, rechaza si todas las simulaciones rechazan.\\
+Sean $X_1, \dots, X_k$ variables booleanas independientes con $E[X_i] = Pr[X_i=1] \geq p \; con \; p=n^{-c}$. Usando la configuración $\delta = n ^{-c}/2$ garantizamos que si $\Sigma_{i=1}^k X_i \geq pk - \delta pk$ entonces obtendremos una respuesta correcta. Así acotamos la probabilidad de obtener una respuesta incorrecta a
+\[ e^{-{\dfrac{1}{4|x|^{2c}}}\dfrac{1}{2}|x|^{2c+d}} \leq 2^{-n^d} \]
+
 \subsubsection*{2.}
 \subsubsection*{3.}
 \end{document}
