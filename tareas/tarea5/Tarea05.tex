@@ -41,6 +41,22 @@
 }
 
 \subsubsection*{2. Demuestra que \textit{ZPP} = \textit{RP} $\cap$ \textit{coRP}}
+\textbf{Dem.}\\
+
+\fbox{\textbf{$\subseteq$}} \textbf{P.D.} $ZPP \subseteq RP \cap coRP$ \\
+
+Primero vemos que $ZPP \subseteq RP$: \\
+Podemos hacer una simple transformación en $ZPP$ que nos resulte en que todo lenguaje en $ZPP$ esté en $RP$. Esta transformación consiste en lo siguiente. Sea $L \in ZPP$, cada vez que la $PTM$ que define a $L$ en $ZPP$ falle en dar un resultado concreto (es decir no lance 0 o 1, más bien un error o un ``no sé''), decimos que el resultado es 1, de manera que se cumple la restricción para que $L$ esté en $RP$ de que si $x \notin L$, entonces el resultado será siempre 0. A demás como la $PTM$ falla con probabilidad menor a 1/2, también se cumple la otra restricción de $RP$ que dice que si $x \in L$, entonces el resultado será 1 con probabilidad mayor a 1/2. \\
+
+Vemos ahora que $ZPP \subseteq coRP$: \\
+Análogamente al caso anterior, sea $L \in ZPP$, cada vez que la $PTM$ que define a $L$ en $ZPP$ falla, diremos que el resultado es 0, de manera que se cumplan las restricciones para que $L$ esté en $coRP$. \\
+
+Como $ZPP \subseteq RP$ y $ZPP \subseteq coRP$, entonces $ZPP \subseteq RP \cap coRP$ \\
+
+\fbox{\textbf{$\supseteq$}} \textbf{P.D.} $RP \cap coRP \subseteq ZPP$ \\
+
+
+
 \subsubsection*{3. Demuestra que \textit{BPL} $\subseteq$ \textit{P}, donde \textit{BPL} es la clase de lenguajes decidibles por \textit{PTM} que utilizan espacio logarítmico.}
 \textbf{Dem.}\\
 Sea $L$ un lenguaje \textbf{\textit{BPL}} y $M$ una $TM$ tal que para una entrada $x \in L$, $Pr[M(x) = L(x)] \leq \frac{2}{3}$. Supongamos que la cadena $x$ es de longitud $n$, ahora bien, sea $C$ el número de configuraciónes de $M(\cdot,x)$, entonces $S = C \times C$ es una matriz tal que $S_{{c_1},{c_2}} = \frac{1}{2}$ si la configuración $c_2$ es obtenida en un sólo paso de $M$ desde $c_1$ y  $S_{{c_1},{c_2}} = 0$ en cualquier otro caso. $\forall t$, la entrada $S^t_{{c_1},{c_2}}$ nos dice la probabilidad de obtener
