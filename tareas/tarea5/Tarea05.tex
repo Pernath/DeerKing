@@ -28,7 +28,6 @@
 \begin{document}
 \maketitle
 \section*{Ejercicios}
-<<<<<<< HEAD
 \subsubsection*{1.}
 Sea $L \in \{0,1\}^*$ tal que existe una PTM con tiempo polinomial de ejecución tal que $\forall \; \alpha \in \{0,1\}^*$
 
@@ -49,21 +48,6 @@ para una $\delta$ lo suficientemente pequeña. \\
 Sean $X_1, \dots, X_k$ variables booleanas independientes con $E[X_i] = Pr[X_i=1] \geq p \; con \; p=n^{-c}$. Usando la configuración $\delta = n ^{-c}/2$ garantizamos que si $\Sigma_{i=1}^k X_i \geq pk - \delta pk$ entonces obtendremos una respuesta correcta. Así acotamos la probabilidad de obtener una respuesta incorrecta a
 \[ e^{-{\dfrac{1}{4|x|^{2c}}}\dfrac{1}{2}|x|^{2c+d}} \leq 2^{-n^d} \]
 
-\subsubsection*{2.}
-\subsubsection*{3.}
-=======
-\subsubsection*{1. Sea $L \subseteq \{0,1\}^*$ tal que existe una \textit{PTM} con tiempo polinomial de ejecución tal que $\forall \alpha \in \{0,1\}^*$:\vspace{0.3cm}
-  \begin{enumerate}[label=\alph*)]
-  \item Si $\alpha \in L$ entonces $Pr[M(\alpha) = 1] \geq n^{-1}$
-    \item Si $\alpha \notin L$ entonces $Pr[M(\alpha) = 1] = 0$
-  \end{enumerate}
-  Demuestra que para todo $d > 0$, existe una $M' \in PTM$ con tiempo polinomial de ejecución tal que $\forall \alpha \in {0,1}^*$:
-  \begin{enumerate}[label=\alph*)]
-  \item Si $\alpha \in L$ entonces $Pr[M'(\alpha) = 1] \geq 1-2^{-n^d}$
-  \item Si $\alpha \notin L$ entonces $Pr[M'(\alpha) = 1] = 0$
-  \end{enumerate}
-}
-
 \subsubsection*{2. Demuestra que \textit{ZPP} = \textit{RP} $\cap$ \textit{coRP}}
 \textbf{Dem.}\\
 
@@ -79,13 +63,9 @@ Como $ZPP \subseteq RP$ y $ZPP \subseteq coRP$, entonces $ZPP \subseteq RP \cap 
 
 \fbox{\textbf{$\supseteq$}} \textbf{P.D.} $RP \cap coRP \subseteq ZPP$ \\
 
-
-
 \subsubsection*{3. Demuestra que \textit{BPL} $\subseteq$ \textit{P}, donde \textit{BPL} es la clase de lenguajes decidibles por \textit{PTM} que utilizan espacio logarítmico.}
 \textbf{Dem.}\\
 Sea $L$ un lenguaje \textbf{\textit{BPL}} y $M$ una $TM$ tal que para una entrada $x \in L$, $Pr[M(x) = L(x)] \leq \frac{2}{3}$. Supongamos que la cadena $x$ es de longitud $n$, ahora bien, sea $C$ el número de configuraciónes de $M(\cdot,x)$, entonces $S = C \times C$ es una matriz tal que $S_{{c_1},{c_2}} = \frac{1}{2}$ si la configuración $c_2$ es obtenida en un sólo paso de $M$ desde $c_1$ y  $S_{{c_1},{c_2}} = 0$ en cualquier otro caso. $\forall t$, la entrada $S^t_{{c_1},{c_2}}$ nos dice la probabilidad de obtener
 la configuración $c_2$ a partir de $c_1$ en $t$ pasos, donde $S^t$ es la matriz resultante de la multiplicación de $S$ con ella misma, $t$ veces. Al calcular todas las potencias de $S$ hasta el tiempo de ejecución de $M(\cdot,x)$, podemos calcular la probabilidad de de aceptación para $M(r,x)$ y decidir si $x \in L$. Notemos que cada probabilidad es un entero múltiplo de $\frac{1}{2^{p(n)}}$, de manera que puede ser representada con un número polinomial de dígitos. Por lo tanto \textit{BPL} $\subseteq$ \textit{P}.
 
-
->>>>>>> 528c52ff32649a496d08e8fbd8ec609e3fdd5c8c
 \end{document}
