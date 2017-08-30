@@ -10,9 +10,13 @@
 \usepackage{mathtools}
 \usepackage{amssymb}
 \usepackage{enumerate}
+\usepackage{amsmath}
 %\usepackage{graphicx}
 %\graphicspath { {tarea01/media/} }
 %\usepackage{pifont}
+\newenvironment{boenumerate}
+               {\begin{enumerate}\renewcommand\labelenumi{\textbf{\theenumi.}}}
+               {\end{enumerate}}
 
 %Preambulo
 \title{Análisis de algoritmmos \\ Tarea 1}
@@ -23,11 +27,95 @@
 \maketitle
 
 \section*{Ejercicios}
-\subsubsection*{1.}
-\subsubsection*{2.}
-\subsubsection*{3.}
-\subsubsection*{4.}
-\subsubsection*{5.}
-\subsubsection*{6.}
+
+\begin{boenumerate}
+\item 
+  \begin{enumerate}
+  \item $n^2$
+    \begin{enumerate}
+    \item Con $2n$ de entrada:
+      \begin{align}
+        (2n)^2 & = 2^2 \cdot n^2 \\ & = 4 \cdot n
+      \end{align}
+      Se vuelve cuatro veces más lento.
+    \item Con $n+1$ de entrada:
+      \begin{align}
+        (n+1)^2 = n^2+2n+1
+      \end{align}
+      Aumenta en tiempo, un adicional $2n+1$.
+    \end{enumerate}
+  \item $n^3$
+    \begin{enumerate}
+    \item Con $2n$ de entrada:
+      \begin{align}
+        (2n)^3 & = 2^3 \cdot n^3 \\ & = 8 \cdot n
+      \end{align}
+      Se vuelve ocho veces más lento.
+    \item Con $n+1$ de entrada:
+      \begin{align}
+        (n+1)^3 &= n\cdot(n^2+2n+1) \\
+        &= n^3+2n^2+n
+      \end{align}
+      Aumenta en tiempo, un adicional $2n^2+n$.
+    \end{enumerate}
+  \item $100n^2$
+    \begin{enumerate}
+    \item Con $2n$ de entrada:
+      \begin{align}
+        100(2n)^2 &= 100(2^2n^2) \\
+        &= 4 \cdot 100n^2 
+      \end{align}
+      El algoritmo se vuelve cuatro veces más lento.
+    \item Con $n+1$ de entrada:
+      \begin{align}
+        100(n+1)^2 &= 100(n^2+2n+1) \\
+        &= 100n^2+100(2n+1) \\
+        &= 100n^2+200n+100
+      \end{align}
+      Por lo que se adiciona al tiempo original 200n+100.
+    \end{enumerate}
+  \item $n\;log\;n$
+    \begin{enumerate}
+    \item Con $2n$ de entrada:
+      \begin{align}
+        2n\cdot log(2n) &= 2n\cdot(log(2)+log(n)) \\
+        &= 2n \cdot log_2(2) + 2n \cdot log(n) \\
+        &= 2n \cdot 1 + 2n \cdot log(n) \\
+        &= 2n \cdot log(n) + 2n 
+      \end{align}
+      Por lo que aumenta en tiempo al doble más un adicional $2n$.
+    \item Con $n+1$ de entrada:
+      \begin{align}
+        (n+1) \cdot log(n+1) &= log\big((n+1)^{(n+1)}\big) \\
+        &= log\big((n+1)^n \cdot (n+1)\big) \\
+        &= log\big((n+1)^n\big) + log(n+1) \\
+        &= log((n+1)^n) + log\Big((n+1) \cdot \frac{n^n}{n^n}\Big) \\
+        &= n\;log(n+1) + log(n+1) + log\Big(\frac{n^n}{n^n}\Big) \\
+        &= n\;log(n+1) + log(n+1) + log(n^n) - log(n^n) \\
+        &= n\;log(n+1) + log(n+1) + n\;log(n) - n\;log(n) \\
+        &= n\;logn + log(n+1) + n\cdot\big(log(n+1)-log(n)\big)
+      \end{align}
+      Por lo que aumenta en tiempo un adicional $\;\;\;log(n+1) + n\cdot\big(log(n+1)-log(n)\big)$
+    \end{enumerate}
+  \item $2^n$
+    \begin{enumerate}
+    \item Con $2n$ de entrada:
+      \begin{align}
+        2^{(2n)} = (2^n)^2
+      \end{align}
+      Por lo que el nuevo tiempo será la potencia cuadrada del original.
+    \item Con $n+1$ de entrada:
+      \begin{align}
+        2^{(n+1)} = 2 \cdot 2^n
+      \end{align}
+      Aumenta al doble del original.
+    \end{enumerate}
+  \end{enumerate}
+\item
+\item
+\item
+\item
+\item
+\end{boenumerate}
 
 \end{document}
