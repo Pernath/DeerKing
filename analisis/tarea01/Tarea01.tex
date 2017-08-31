@@ -17,7 +17,10 @@
 \newenvironment{boenumerate}
                {\begin{enumerate}\renewcommand\labelenumi{\textbf{\theenumi.}}}
                {\end{enumerate}}
-
+               
+\newcommand{\suchthat}{\mathrel{\mathop\supset}\kern-4.0pt$-$\kern-1.0pt$-~$}
+               
+               
 %Preambulo
 \title{Análisis de algoritmmos \\ Tarea 1}
 \author{Carlos Gerardo Acosta Hernández \\ Andrea Itzel González Vargas}
@@ -126,7 +129,22 @@
   \item $2^n = 3.6 \times 10^{13} \Rightarrow n = log_2(3.6 \times 10^{13}) \approx 45$ elementos\footnote{No consideramos elementos que no sean enteros: n = 45.033062140090664}.
   \item $2^{2^n} = 3.6 \times 10^{13} \Rightarrow n = log_2(log_2(3.6 \times 10^{13})) \approx log_2(45) \approx 5$ elementos\footnote{Una vez más consideramos sólo la parte entera: n = 5.49291267570108}.
   \end{enumerate}
-\item
+\item Comencemos recordando que para las funciones exponenciales respecto de las polinomiales, se cumple:
+  $\forall r,d \suchthat r > 1 \Rightarrow n^d \in O(r^n)$,
+  por lo que podemos determinar que $f_1(n) \in O(f_4(n))$.
+
+  De manera directa, podemos decir que $f_4(n) \in O(f_5(n))$, para los positivos a partir del 1. 
+  
+  Ahora veamos que $f_1(n) = n^{2.5} = n^{2+0.5} = n^2 \cdot n^{\frac{1}{2}}$, comparándolo con $f_6(n)$, al tener que $log_2(n) \leq n^{\frac{1}{2}} \Rightarrow n^2logn \leq n^{2.5}$, y notando que para valores mayores a $4$, $f_1(n)$ es mayor siempre que $f_6(n)$, podemos concluir que $f_6(n) \in O(f_1(n))$.
+  
+  Hemos visto en clase que $n^2 \in O(n^2logn)$ y que $n \in O(n^2)$. Por transitividad, podemos ver que que
+  $f_3(n) \in O(f_6(n))$. De cualquier manera, podemos ver que a partir de valores como 3, $f_6$ será siempre mayor a $f_3$.
+  
+
+  Finalmente, es claro que al no estar definidas las raíces negativas en los reales, desde el 0 a valores positivos, la función $f_3$ es mayor a $f_2$.
+
+  Así pues, queda en orden creciente nuestra lista de funciones como sigue:
+  $f_2,f_3,f_6,f_1,f_4,f_5$.
 \item
 \item
 \item
