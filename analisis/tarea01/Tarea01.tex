@@ -137,7 +137,7 @@
   
   Ahora veamos que $f_1(n) = n^{2.5} = n^{2+0.5} = n^2 \cdot n^{\frac{1}{2}}$, comparándolo con $f_6(n)$, al tener que $log_2(n) \leq n^{\frac{1}{2}} \Rightarrow n^2logn \leq n^{2.5}$, y notando que para valores mayores a $4$, $f_1(n)$ es mayor siempre que $f_6(n)$, podemos concluir que $f_6(n) \in O(f_1(n))$.
   
-  Hemos visto en clase que $n^2 \in O(n^2logn)$ y que $n \in O(n^2)$. Por transitividad, podemos ver que que
+  Hemos visto en clase que $n^2 \in O(n^2logn)$ y que $n \in O(n^2)$. Por transitividad, podemos ver que 
   $f_3(n) \in O(f_6(n))$. De cualquier manera, podemos ver que a partir de valores como 3, $f_6$ será siempre mayor a $f_3$.
   
 
@@ -147,6 +147,15 @@
   $f_2,f_3,f_6,f_1,f_4,f_5$.
 \item
 \item
+  \begin{enumerate}
+  \item Falso. Abusando un poco de la definición de la cota justa, supongamos que para toda $n$, tenemos que $f(n) = 2$ y 
+    $g(n) = 1$. Considerando una $c \geq 2$, es fácil ver que $f(n) \leq c \cdot g(n) \Rightarrow f(n) \in O(g(n))$, por lo que al aplicar el logaritmo, obtenemos $log_2\;f(n) = log_2\; 2 = 1$ y $log_2\;g(n) = log_2\; 1 = 0$. Con ese resultado, es imposible hallar una constante $c$ que siga cumpliendo la definición para la cota superior asintótica ($f(n) > c\cdot g(n) \;\forall n$, en este ejemplo).
+  \item Falso. Suponiendo que $f(n) = 2n$ y $g(n) = n$. Considerando una $c \geq 2$, es fácil ver que $f(n) \leq c \cdot g(n) \Rightarrow f(n) \in O(g(n))$. Sin embargo, $2^{f(n)} \in O(2^{g(n)})$ no se cumplirá
+    pues $2^{2n} \geq c \cdot 2^n$; de hecho, con una $n$ lo suficientemente grande, la igualdad no ocurrirá. Es decir que para cualquier constante que elijamos, la relación solicitada no se mantendrá para toda $n$.
+  \item Verdadero. Tenemos que $f(n) \leq c \cdot g(n)$ p.a. $c > 0$, por el crecimiento
+    de una función cuadrática en el cuadrante real positivo, el orden se preservará para
+    $(f(n)^2) \leq c \cdot (g(n))^2$.
+  \end{enumerate}
 \item
 \end{boenumerate}
 
