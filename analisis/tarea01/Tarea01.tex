@@ -112,6 +112,20 @@
     \end{enumerate}
   \end{enumerate}
 \item
+  Primero debemos calcular el total de operaciones que puede realizar la computadora en una hora:
+  \begin{equation}
+    10^{10} \times (60 \cdot 60) = 3600 \times 10^{10} = 3.6 \times 10^{13} op/h
+  \end{equation}
+  Ahora simplemente igualamos el tiempo de ejecución de los algoritmos con el total de operaciones
+  que se pueden realizar para hallar la entrada máxima de cada uno, computable en una hora.
+  \begin{enumerate}
+  \item $n^2 = 3.6 \times 10^{13} \Rightarrow n = \sqrt{3600 \times 10^{10}} = 60 \times 10^{5} = 6000000$ elementos.
+  \item $n^3 = 3.6 \times 10^{13} \Rightarrow n = \sqrt[3]{3600 \times 10^{10}} \approx 33019$ elementos\footnote{No contamos las fracciones de elementos: $n = 33019.27248894625$}.
+  \item $100n^2 = 3.6 \times 10^{13} \Rightarrow n = \frac{\sqrt{3600 \times 10^{10}}}{100} = 60 \times 10^{3} = 60000$ elementos.
+  \item $n\;log\;n = 3.6 \times 10^{13} \Rightarrow n = $
+  \item $2^n = 3.6 \times 10^{13} \Rightarrow n = log_2(3.6 \times 10^{13}) \approx 45$ elementos\footnote{No consideramos elementos que no sean enteros: n = 45.033062140090664}.
+  \item $2^{2^n} = 3.6 \times 10^{13} \Rightarrow n = log_2(log_2(3.6 \times 10^{13})) \approx log_2(45) \approx 5$ elementos\footnote{Una vez más consideramos sólo la parte entera: n = 5.49291267570108}.
+  \end{enumerate}
 \item
 \item
 \item
